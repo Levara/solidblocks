@@ -1,4 +1,7 @@
-baseURL = 'http://example.org/'
+baseURL = 'https://pellepelster.github.io/solidblocks/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
-theme = "ananke"
+title = 'Solidblocks'
+theme = "learn"
+
+[params]
+    themeVariant = "green"

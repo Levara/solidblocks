@@ -21,6 +21,14 @@ function task_build_documentation {
     )
 }
 
+function task_serve_documentation {
+    ensure_environment
+    (
+      cd "${DIR}/doc"
+      hugo serve --baseURL "/"
+    )
+}
+
 function task_lint {
   ensure_environment
   find "${DIR}/solidblocks-shell" -exec shellcheck {} \;
@@ -39,6 +47,7 @@ arg=${1:-}
 shift || true
 case ${arg} in
   build-documentation) task_build_documentation "$@" ;;
+  serve-documentation) task_serve_documentation "$@" ;;
   lint) task_lint "$@" ;;
   test) task_test "$@" ;;
   *) task_usage ;;
