@@ -8,6 +8,9 @@ source "${DIR}/solidblocks-shell/download.sh"
 source "${DIR}/solidblocks-shell/software.sh"
 source "${DIR}/solidblocks-shell/file.sh"
 
+VERSION="${GITHUB_REF_NAME:-snapshot}"
+
+
 function ensure_environment {
   software_ensure_shellcheck
   software_ensure_hugo
@@ -23,7 +26,7 @@ function task_build_documentation {
 }
 
 function task_build_shell {
-  zip -r solidblocks-shell.zip ${DIR}/solidblocks-shell/*.sh
+  zip -r "solidblocks-shell-${VERSION}.zip" ${DIR}/solidblocks-shell/*.sh
 }
 
 function task_serve_documentation {
