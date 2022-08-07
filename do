@@ -21,6 +21,7 @@ function task_build_documentation {
     ensure_environment
     (
       cd "${DIR}/doc"
+      sed -i "s/SOLIDBLOCKS_VERSION/${VERSION}/g" content/shell/installation/_index.md
       hugo
     )
 }

@@ -1,6 +1,6 @@
 ---
 title: Download
-weight: 10
+weight: 30
 disableToc: true
 ---
 
