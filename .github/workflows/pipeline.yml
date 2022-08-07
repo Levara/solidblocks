@@ -70,4 +70,4 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/v')
         with:
           files: |
-            solidblocks-shell.zip
+            solidblocks/solidblocks-shell/solidblocks-shell.zip
