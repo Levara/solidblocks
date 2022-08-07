@@ -1,10 +1,13 @@
-name: deploy documentation
+name: solidblocks
 
 on:
-  push:
-    branches: ["main"]
-
   workflow_dispatch:
+  push:
+    branches:
+      - 'main'
+    tags:
+      - 'v[0-9]+.[0-9]+'
+      - 'v[0-9]+.[0-9]+.[0-9]+'
 
 permissions:
   contents: read
@@ -16,7 +19,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  documentation:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -28,8 +31,6 @@ jobs:
           submodules: recursive
       - name: Build Documentation
         run:  ./do build-documentation
-      - name: Build
-        run:  ./do build
       - name: Setup Pages
         uses: actions/configure-pages@v1
       - name: Upload artifact
@@ -45,3 +46,22 @@ jobs:
         with:
           files: |
             solidblocks-shell.zip
+  solidblocks-shell:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Build
+        run:  ./do build-shell
+      - name: Archive Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: solidblocks-shell
+          path: |
+            solidblocks-shell.zip
+#      - name: Release
+#        uses: softprops/action-gh-release@v1
+#        if: startsWith(github.ref, 'refs/tags/')
+#        with:
+#          files: |
+#            solidblocks-shell.zip

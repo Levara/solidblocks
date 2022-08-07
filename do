@@ -22,7 +22,7 @@ function task_build_documentation {
     )
 }
 
-function task_build {
+function task_build_shell {
   zip -r solidblocks-shell.zip ${DIR}/solidblocks-shell/*.sh
 }
 
@@ -51,7 +51,7 @@ function task_usage {
 arg=${1:-}
 shift || true
 case ${arg} in
-  build) task_build "$@" ;;
+  build-shell) task_build_shell "$@" ;;
   build-documentation) task_build_documentation "$@" ;;
   serve-documentation) task_serve_documentation "$@" ;;
   lint) task_lint "$@" ;;
