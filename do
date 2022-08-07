@@ -26,7 +26,10 @@ function task_build_documentation {
 }
 
 function task_build_shell {
-  zip -r "solidblocks-shell-${VERSION}.zip" ${DIR}/solidblocks-shell/*.sh
+  (
+    cd ${DIR}
+    zip -r "solidblocks-shell-${VERSION}.zip" solidblocks-shell/*.sh
+  )
 }
 
 function task_serve_documentation {
