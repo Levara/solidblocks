@@ -56,6 +56,7 @@ jobs:
       - name: Archive Artifacts
         uses: actions/upload-artifact@v3
         with:
+          name: solidblocks-shell
           path: |
             solidblocks-shell.zip
   release:
