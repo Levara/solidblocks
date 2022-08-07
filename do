@@ -6,6 +6,7 @@ DIR="$(cd "$(dirname "$0")" ; pwd -P)"
 
 source "${DIR}/solidblocks-shell/download.sh"
 source "${DIR}/solidblocks-shell/software.sh"
+source "${DIR}/solidblocks-shell/file.sh"
 
 function ensure_environment {
   software_ensure_shellcheck
