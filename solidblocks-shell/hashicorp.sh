@@ -20,8 +20,8 @@ function hashicorp_ensure {
     local target_dir="${tmp_dir}/${product}-${version}"
     local url="https://releases.hashicorp.com/${product}/${version}/${product}_${version}_linux_amd64.zip"
 
-    download_get_and_verify_checksum "${url}" "${target_file}" "${checksum}"
-    download_extract_file_to_directory "${target_file}" "${target_dir}"
+    download_and_verify_checksum "${url}" "${target_file}" "${checksum}"
+    file_extract_to_directory "${target_file}" "${target_dir}"
 
     cp "${target_dir}/${product}" "${bin_dir}/${product}"
 }

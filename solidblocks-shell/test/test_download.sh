@@ -10,27 +10,27 @@ source "${DIR}/../download.sh"
 source "${DIR}/../hashicorp.sh"
 
 # downloaded file
-download_get_and_verify_checksum "https://releases.hashicorp.com/nomad/0.12.5/nomad_0.12.5_linux_amd64.zip" "${TEMP_DIR}/download_get_and_verify_checksum_$$/file.zip" "dece264c86a5898a18d62d6ecca469fee71329e444b284416c57bd1e3d76f253" 
-test_assert_matches "downloaded file checksum" "dece264c86a5898a18d62d6ecca469fee71329e444b284416c57bd1e3d76f253" "$(sha256sum ${TEMP_DIR}/download_get_and_verify_checksum_$$/file.zip | cut -d' ' -f1)"
+download_and_verify_checksum "https://releases.hashicorp.com/nomad/0.12.5/nomad_0.12.5_linux_amd64.zip" "${TEMP_DIR}/download_and_verify_checksum_$$/file.zip" "dece264c86a5898a18d62d6ecca469fee71329e444b284416c57bd1e3d76f253"
+test_assert_matches "downloaded file checksum" "dece264c86a5898a18d62d6ecca469fee71329e444b284416c57bd1e3d76f253" "$(sha256sum ${TEMP_DIR}/download_and_verify_checksum_$$/file.zip | cut -d' ' -f1)"
 
 # invalidate file
-echo "XXX" > "${TEMP_DIR}/download_get_and_verify_checksum_$$/file.zip"
+echo "XXX" > "${TEMP_DIR}/download_and_verify_checksum_$$/file.zip"
 
 # ensure it gets re-downloaded
-download_get_and_verify_checksum "https://releases.hashicorp.com/nomad/0.12.5/nomad_0.12.5_linux_amd64.zip" "${TEMP_DIR}/download_get_and_verify_checksum_$$/file.zip" "dece264c86a5898a18d62d6ecca469fee71329e444b284416c57bd1e3d76f253" 
-test_assert_matches "downloaded file checksum" "dece264c86a5898a18d62d6ecca469fee71329e444b284416c57bd1e3d76f253" "$(sha256sum ${TEMP_DIR}/download_get_and_verify_checksum_$$/file.zip | cut -d' ' -f1)"
+download_and_verify_checksum "https://releases.hashicorp.com/nomad/0.12.5/nomad_0.12.5_linux_amd64.zip" "${TEMP_DIR}/download_and_verify_checksum_$$/file.zip" "dece264c86a5898a18d62d6ecca469fee71329e444b284416c57bd1e3d76f253"
+test_assert_matches "downloaded file checksum" "dece264c86a5898a18d62d6ecca469fee71329e444b284416c57bd1e3d76f253" "$(sha256sum ${TEMP_DIR}/download_and_verify_checksum_$$/file.zip | cut -d' ' -f1)"
 
 # extract file to folder
-download_extract_file_to_directory "${TEMP_DIR}/download_get_and_verify_checksum_$$/file.zip" "${TEMP_DIR}/download_get_and_verify_checksum_$$"
-test_assert_file_exists "${TEMP_DIR}/download_get_and_verify_checksum_$$/nomad"
-test_assert_file_exists "${TEMP_DIR}/download_get_and_verify_checksum_$$/.file.zip.extracted"
+file_extract_to_directory "${TEMP_DIR}/download_and_verify_checksum_$$/file.zip" "${TEMP_DIR}/download_and_verify_checksum_$$"
+test_assert_file_exists "${TEMP_DIR}/download_and_verify_checksum_$$/nomad"
+test_assert_file_exists "${TEMP_DIR}/download_and_verify_checksum_$$/.file.zip.extracted"
 
 # ensure it is not extracted again when marker file is still present
-rm -f "${TEMP_DIR}/download_get_and_verify_checksum_$$/nomad"
-download_extract_file_to_directory "${TEMP_DIR}/download_get_and_verify_checksum_$$/file.zip" "${TEMP_DIR}/download_extract_file_to_directory_$$"
+rm -f "${TEMP_DIR}/download_and_verify_checksum_$$/nomad"
+file_extract_to_directory "${TEMP_DIR}/download_and_verify_checksum_$$/file.zip" "${TEMP_DIR}/file_extract_to_directory_$$"
 
-test_assert_file_not_exists "${TEMP_DIR}/download_get_and_verify_checksum_$$/nomad"
-test_assert_file_exists "${TEMP_DIR}/download_get_and_verify_checksum_$$/.file.zip.extracted"
+test_assert_file_not_exists "${TEMP_DIR}/download_and_verify_checksum_$$/nomad"
+test_assert_file_exists "${TEMP_DIR}/download_and_verify_checksum_$$/.file.zip.extracted"
 
 hashicorp_ensure "terraform" "0.13.4" "a92df4a151d390144040de5d18351301e597d3fae3679a814ea57554f6aa9b24" "${TEMP_DIR}/hashicorp_ensure_$$"
 test_assert_file_exists "${TEMP_DIR}/hashicorp_ensure_$$/terraform"

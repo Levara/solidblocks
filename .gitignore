@@ -6,3 +6,5 @@
 /.cache/
 /doc/public/
 /doc/.hugo_build.lock
+/solidblocks-shell/test/.tmp/
+solidblocks-shell.zip

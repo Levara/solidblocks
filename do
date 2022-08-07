@@ -21,6 +21,10 @@ function task_build_documentation {
     )
 }
 
+function task_build {
+  zip -r solidblocks-shell.zip ${DIR}/solidblocks-shell/*.sh
+}
+
 function task_serve_documentation {
     ensure_environment
     (
@@ -46,6 +50,7 @@ function task_usage {
 arg=${1:-}
 shift || true
 case ${arg} in
+  build) task_build "$@" ;;
   build-documentation) task_build_documentation "$@" ;;
   serve-documentation) task_serve_documentation "$@" ;;
   lint) task_lint "$@" ;;
