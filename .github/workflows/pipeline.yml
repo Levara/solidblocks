@@ -65,9 +65,11 @@ jobs:
     steps:
       - name: Download all workflow run artifacts
         uses: actions/download-artifact@v3
+      - name: Build
+        run: find ./
       - name: Release
-        uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v1
         with:
           files: |
-            solidblocks/solidblocks-shell/solidblocks-shell.zip
+            **/solidblocks-shell.zip
