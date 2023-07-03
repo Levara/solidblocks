@@ -47,6 +47,7 @@ See [documentation](https://pellepelster.github.io/solidblocks/hetzner/rds-postg
 | <a name="input_network_id"></a> [network\_id](#input\_network\_id) | network the created sever should be attached to, network\_ip also needs to bet set in that case | `number` | `null` | no |
 | <a name="input_network_ip"></a> [network\_ip](#input\_network\_ip) | ip address in the attached network | `string` | `null` | no |
 | <a name="input_post_script"></a> [post\_script](#input\_post\_script) | shell script that will be executed after the server configuration is executed | `string` | `""` | no |
+| <a name="input_postgres_major_version"></a> [postgres\_major\_version](#input\_postgres\_major\_version) | PostgreSQL version to use, currently only version 14 is supported | `number` | n/a | yes |
 | <a name="input_pre_script"></a> [pre\_script](#input\_pre\_script) | shell script that will be executed before the server configuration is executed | `string` | `""` | no |
 | <a name="input_public_net_ipv4_enabled"></a> [public\_net\_ipv4\_enabled](#input\_public\_net\_ipv4\_enabled) | enable/disable public ip addresses, see also https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/server#public_net | `bool` | `true` | no |
 | <a name="input_public_net_ipv6_enabled"></a> [public\_net\_ipv6\_enabled](#input\_public\_net\_ipv6\_enabled) | enable/disable public ip addresses, see also https://registry.terraform.io/providers/hetznercloud/hcloud/latest/docs/resources/server#public_net | `bool` | `true` | no |

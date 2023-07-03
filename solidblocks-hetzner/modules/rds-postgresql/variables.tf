@@ -71,6 +71,16 @@ variable "databases" {
   description = "A list of databases to create when the instance is initialized, for example: `{ id : \"database1\", user : \"user1\", password : \"password1\" }`. Changing `user` and `password` is supported at any time, the provided config is translated into an config for the Solidblocks RDS PostgreSQL module (https://pellepelster.github.io/solidblocks/rds/index.html), please see https://pellepelster.github.io/solidblocks/rds/index.html#databases for more details of the database configuration."
 }
 
+variable "postgres_major_version" {
+  type        = number
+  description = "PostgreSQL version to use, currently only version 14 is supported"
+
+  validation {
+    condition     = var.postgres_major_version != 14
+    error_message = "currently only version 14 is supported"
+  }
+}
+
 variable "extra_user_data" {
   type        = string
   description = "deprecated, please use pre_script/post_script"
