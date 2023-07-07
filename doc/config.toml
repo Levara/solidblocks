@@ -4,4 +4,14 @@ title = 'Solidblocks'
 theme = "relearn"
 
 [params]
-    themeVariant = "green"
+themeVariant = "green"
+editURL = "https://github.com/pellepelster/solidblocks/tree/main/doc/content/"
+canonifyURLs = true
+relativeURLs = true
+
+[security]
+[security.funcs]
+getenv =['.*_VERSION$', '.*_CHECKSUM$']
+
+[outputs]
+home = ["HTML", "RSS", "SEARCH", "SEARCHPAGE"]
