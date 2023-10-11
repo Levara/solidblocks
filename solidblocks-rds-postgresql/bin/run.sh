@@ -326,6 +326,7 @@ function start_db() {
 
       ensure_databases
 
+      psql_execute "postgres" "CHECKPOINT"
       ${POSTGRES_BIN_DIR}/pg_ctl -D "${PG_DATA_DIR}" stop
     else
       initiaize_db_and_config
@@ -347,6 +348,7 @@ function start_db() {
     log "setting password for '${DB_ADMIN_USERNAME}'"
     psql_execute "postgres" "ALTER USER \"${DB_ADMIN_USERNAME}\" WITH ENCRYPTED PASSWORD '${DB_ADMIN_PASSWORD}'"
 
+    psql_execute "postgres" "CHECKPOINT"
     ${POSTGRES_BIN_DIR}/pg_ctl -D "${PG_DATA_DIR}" stop
   fi
 
